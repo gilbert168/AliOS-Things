@@ -30,8 +30,8 @@ uint32_t sys_now(void);
 
 #define SAL_LIGHTWEIGHT_PROT  1
 
-#define SAL_DEFAULT_INPUTMBOX_SIZE        8
-#define SAL_DEFAULT_OUTPUTMBOX_SIZE       8
+#define SAL_DEFAULT_INPUTMBOX_SIZE        280//8  modify by gilbert since it is full when mqtt press test
+#define SAL_DEFAULT_OUTPUTMBOX_SIZE       280//8
 
 typedef aos_sem_t sal_sem_t;
 

@@ -160,7 +160,7 @@ void init_atparser()
 
 void init_task(void *arg)
 {
-//#define PABLO
+#define PABLO
 #ifdef PABLO
     console.port = 5;
     console.config.baud_rate = 115200;
@@ -180,7 +180,7 @@ void init_task(void *arg)
     PORTC.PMR.BIT.B2 = 1;
 #else
     console.port = 2;
-    console.config.baud_rate = 115200;//921600;
+    console.config.baud_rate = 115200;//921600;//115200;//921600;
     console.config.data_width = DATA_WIDTH_8BIT;
     console.config.parity = NO_PARITY;
     console.config.stop_bits = STOP_BITS_1;

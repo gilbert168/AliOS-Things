@@ -63,7 +63,7 @@ kstat_t ringbuf_push(k_ringbuf_t *p_ringbuf, void *data, size_t len)
     size_t   len_bytes                   = 0;
     size_t   split_len                   = 0;
     uint8_t  c_len[RINGBUF_LEN_MAX_SIZE] = {0};
-
+    //printf("ringbuf size is %u byte /r/n",p_ringbuf->freesize);
     if (ringbuf_is_full(p_ringbuf)) {
         return RHINO_RINGBUF_FULL;
     }

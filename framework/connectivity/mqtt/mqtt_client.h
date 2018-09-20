@@ -31,7 +31,7 @@ extern "C" {
 #include "iot_export_mqtt.h"
 
 /* maximum republish elements in list */
-#define IOTX_MC_REPUB_NUM_MAX                   (20)
+#define IOTX_MC_REPUB_NUM_MAX                   (200)
 
 /* MQTT client version number */
 #define IOTX_MC_MQTT_VERSION                    (4)

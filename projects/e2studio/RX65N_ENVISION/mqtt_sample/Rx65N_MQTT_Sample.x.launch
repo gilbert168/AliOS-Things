@@ -40,10 +40,10 @@
 <stringAttribute key="com.renesas.cdt.launch.dsf.launchSeqType" value="com.renesas.cdt.launch.dsf.launchSequence.e2GdbServer"/>
 <stringAttribute key="com.renesas.cdt.launch.dsf.serverPath" value="${renesas.support.targetLoc:rx-debug}\e2-server-gdb"/>
 <listAttribute key="com.renesas.cdt.launch.ui.address.mruList.memoryMonitorExpression">
+<listEntry value="ch9_tx_buf"/>
+<listEntry value="ch9_rx_buf"/>
+<listEntry value="ch2_tx_buf"/>
 <listEntry value="0x102000"/>
-<listEntry value="0x101000"/>
-<listEntry value="0x32608"/>
-<listEntry value="0x2fb04"/>
 </listAttribute>
 <booleanAttribute key="com.renesas.hardwaredebug.rx.e2.E2LiteDebugToolSettingsTree.resetAfterReload" value="true"/>
 <booleanAttribute key="com.renesas.hardwaredebug.rx.e2lite.allow.change.startup_bank" value="false"/>

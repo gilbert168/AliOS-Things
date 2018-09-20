@@ -53,12 +53,13 @@ uint16_t UpdateCRC16(uint16_t crcIn, uint8_t byte)
     uint32_t crc = crcIn;
     uint32_t in = byte | 0x100;
 
+    	crc ^= (byte<<8);
     do {
         crc <<= 1;
         in <<= 1;
-        if (in & 0x100) {
-            ++crc;
-        }
+//        if (in & 0x100) {
+//            ++crc;
+//        }
         if (crc & 0x10000) {
             crc ^= 0x1021;
         }

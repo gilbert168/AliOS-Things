@@ -199,6 +199,9 @@ int mqtt_client_example(void)
     mqtt.delete_subdev = NULL;
     if (mqtt_init_instance(mqtt.productKey, mqtt.deviceName, mqtt.deviceSecret, mqtt.max_msg_size) < 0) {
         LOG("mqtt_init_instance failed\n");
+        LOG("reboot system after 3 second!");
+        aos_msleep(3000);
+        aos_reboot();		//gilbert add when sometime mqtt connect FAIL since DOMAIN return 0
         return -1;
     }
     aos_register_event_filter(EV_SYS,  mqtt_service_event, NULL);

@@ -518,7 +518,7 @@ static int iotx_mc_push_pubInfo_to(iotx_mc_client_t *c, int len, unsigned short 
     }
 
     HAL_MutexLock(c->lock_list_pub);
-
+    log_debug("republish list is %u",c->list_pub_wait_ack->len );
     if (c->list_pub_wait_ack->len >= IOTX_MC_REPUB_NUM_MAX) {
         HAL_MutexUnlock(c->lock_list_pub);
         log_err("more than %u elements in republish list. List overflow!", c->list_pub_wait_ack->len);
@@ -2519,7 +2519,7 @@ int IOT_MQTT_Yield(void *handle, int timeout_ms)
     }
 
     /* Keep MQTT alive or reconnect if connection abort */
-    iotx_mc_keepalive(pClient);
+    //iotx_mc_keepalive(pClient);
 
     /* acquire package in cycle, such as PINGRESP or PUBLISH */
     rc = iotx_mc_cycle(pClient, &time);

@@ -244,7 +244,7 @@ uint32_t  BSP_SysPerClkFreqGet (void)
 
     }
 
-    pll_freq = BSP_CFG_SYS_EXT_CLK_FREQ * pll_stc / pll_div;
+    pll_freq = BSP_CFG_SYS_EXT_CLK_FREQ * pll_stc /2/ pll_div;  //RX65N pll_stc is (.BIT.STC+1/2)
     
     per_div  = SYSTEM.SCKCR.BIT.PCKB;
     

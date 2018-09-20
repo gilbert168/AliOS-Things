@@ -104,10 +104,27 @@ static int rx65n_ota_write(hal_ota_module_t *m, volatile uint32_t* off_set, uint
         CRC16_Init( &contex );
         memset(&ota_info, 0 , sizeof ota_info);
     }
-    CRC16_Update( &contex, in_buf, in_buf_len);
-
-    ret = hal_flash_write(pno, &_off_set, in_buf, in_buf_len);
     ota_info.ota_len += in_buf_len;
+    if (ota_info.ota_len>0x100000)
+    {
+    	LOG("OTA FILE IS TOO BIG");
+    	return -1;
+    }
+    ret = hal_flash_write(pno, &_off_set, in_buf, in_buf_len);
+
+    LOG("OTA len is: %x \n",ota_info.ota_len);
+
+    if (ota_info.ota_len<0xffe00)
+    {
+    	CRC16_Update( &contex, in_buf, in_buf_len);
+    }
+    else if ((ota_info.ota_len-in_buf_len)<0xffe00)
+    {
+    	CRC16_Update( &contex, in_buf, (0xffe00-(ota_info.ota_len-in_buf_len)));
+    }
+
+    LOG("OTA CRC16 is: 0x%x \n",contex);
+
     return ret;
 }
 
@@ -123,12 +140,26 @@ static int rx65n_ota_set_boot(hal_ota_module_t *m, void *something)
 {
 	uint32_t banksel_val = *((uint32_t *)BANKSEL_ADDR);
     ota_finish_param_t *param = (ota_finish_param_t *)something;
+    uint16_t * CRC_address;
+    uint16_t CRC_data;
+	CRC_address= 0xFFEFFF70;
+	CRC_data = *CRC_address;
+	CRC_address = &contex;
     if (param==NULL){
         return -1;
     }
+
+    if (CRC_data != *CRC_address)
+    {
+    	LOG("CRC addr data is 0x%x ,CRC16 is 0x%x",CRC_data,*CRC_address);
+    	return -1;
+    }
+
+
     if (param->result_type==OTA_FINISH)
     {
         CRC16_Final( &contex, (uint16_t *)&ota_info.ota_crc );
+        LOG("OTA CRC16 is: 0x%x \n",ota_info.ota_crc);
         LOG("switch boot bank\n");
         LOG("BANKSWP IS: %x \n",banksel_val);
         hal_ota_switch_to_new_fw();
