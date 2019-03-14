@@ -71,13 +71,19 @@ static cpu_stack_t  demo_task_buf2[DEMO_TASK_STACKSIZE];
 static uint32_t     tst_cnt;
 static uint32_t     tmr_cnt;
 
-static ksem_t       sem_tst;
+ ksem_t       sem_tst;
 static ktimer_t     timer_test;
 static kbuf_queue_t queue_test;
 
 static char         queue_buf[50];
 static char         queue_buf_recv[100];
 static size_t       queue_recv_size;
+
+int LightSwitch =0;
+double Temperature =24.5;
+double Humidity =85;
+long illumination = 180;
+
 
 extern hal_wifi_module_t aos_wifi_module_mk3060;
 extern struct hal_ota_module_s rx65n_ota_module;
@@ -118,8 +124,14 @@ void demo_task2(void *arg)
 {
 	PORTD.PDR.BIT.B7 = 1;  	//LED1 as portD.7
 	PORTD.PMR.BIT.B7 = 0;  //portD.7 AS IO
+	PORTB.PDR.BIT.B1 = 1;  	//USER LED2 as portB.1
+	PORTB.PMR.BIT.B1 = 0;  //portB.1 AS IO
     while (1)
     {
+    	if (LightSwitch==0)
+    		PORTB.PODR.BIT.B1 = 1; //user LED2 OFF
+    	else
+    		PORTB.PODR.BIT.B1 = 0; //user LED2 ON
     	PORTD.PODR.BIT.B7 = ~ PORTD.PODR.BIT.B7;
         tst_cnt++;
         krhino_sem_take(&sem_tst, RHINO_WAIT_FOREVER);

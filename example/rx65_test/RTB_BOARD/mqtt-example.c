@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include <k_api.h>
 #include "iot_import.h"
 #include "iot_export.h"
 #include "aos/log.h"
@@ -69,6 +69,12 @@ static int sub_counter = 0;
 static int pub_counter = 0;
 #endif
 char msg_pub[128];
+extern ksem_t       sem_tst;
+extern int LightSwitch ;
+extern double Temperature;
+extern double Humidity ;
+extern long illumination ;
+
 
 static void ota_init(void *pclient);
 int mqtt_client_example(void);
@@ -116,10 +122,6 @@ static void mqtt_Property_set(char *topic, int topic_len, void *payload, int pay
 	cJSON           *json;
 	char *Json_string ;
 
-	int LightSwitch =0;
-	double Temperature =24.5;
-	double Humidity =85;
-	long illumination = 180;
 
 
 
@@ -145,6 +147,7 @@ static void mqtt_Property_set(char *topic, int topic_len, void *payload, int pay
 	cJSON *item = cJSON_GetObjectItem(json, "params");
 	item = cJSON_GetObjectItem(item, "LightSwitch");
 	LightSwitch = item->valueint;
+	krhino_sem_give(&sem_tst);
 	item =  cJSON_CreateObject();
 	cJSON_AddItemToObject(item, "LightSwitch", cJSON_CreateNumber(LightSwitch));
 	cJSON_AddItemToObject(item, "Temperature", cJSON_CreateNumber(Temperature));
