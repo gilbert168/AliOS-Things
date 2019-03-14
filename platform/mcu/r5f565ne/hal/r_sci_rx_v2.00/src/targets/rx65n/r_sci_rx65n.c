@@ -54,9 +54,9 @@ static void sci0_rxi0_isr(void);
 
 #if SCI_CFG_CH1_INCLUDED
 #pragma interrupt sci1_txi1_isr(vect=VECT(SCI1,TXI1))
-static void sci1_txi1_isr(void);
+ void sci1_txi1_isr(void);
 #pragma interrupt sci1_rxi1_isr(vect=VECT(SCI1,RXI1))
-static void sci1_rxi1_isr(void);
+ void sci1_rxi1_isr(void);
 #endif
 /*
 //#if SCI_CFG_CH2_INCLUDED
@@ -543,7 +543,7 @@ static void sci0_txi0_isr(void)
 #endif
 
 #if SCI_CFG_CH1_INCLUDED
-static void sci1_txi1_isr(void)
+ void sci1_txi1_isr(void)
 {
     txi_handler(&ch1_ctrl);
 } /* End of function sci1_txi1_isr() */
@@ -744,7 +744,7 @@ static void sci0_rxi0_isr(void)
 #endif
 
 #if SCI_CFG_CH1_INCLUDED
-static void sci1_rxi1_isr(void)
+ void sci1_rxi1_isr(void)
 {
     rxi_handler(&ch1_ctrl,1);
 } /* End of function sci1_rxi1_isr() */

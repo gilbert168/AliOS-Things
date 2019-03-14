@@ -31,6 +31,11 @@
 #define AT_EVENT_ENET_DATA "+ENETEVENT:"
 
 // AT uart
+#ifdef rx65n_rtb_demo
+#define AT_UART_PORT 1 //RTB board
+
+#else
 #define AT_UART_PORT 9
+#endif
 
 #endif

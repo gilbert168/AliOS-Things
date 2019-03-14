@@ -156,11 +156,14 @@ DEFINE YOUR SYSTEM - UNCOMMENT THE INCLUDE PATH FOR THE PLATFORM YOU ARE USING.
 /* RSKRX65N */
 //#include "./board/rskrx65n/r_bsp.h"
 
+
+#ifdef rx65n_rtb_demo
+/* GENERIC_RX65N */
+#include "./board/generic_rx65n/r_bsp.h"
+#else
 /* RSKRX65N_2MB */
 #include "./board/rskrx65n_2mb/r_bsp.h"
-
-/* GENERIC_RX65N */
-//#include "./board/generic_rx65n/r_bsp.h"
+#endif
 
 /* RSKRX71M */
 //#include "./board/rskrx71m/r_bsp.h"

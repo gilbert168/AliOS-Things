@@ -1,4 +1,4 @@
-Renesas Optimizing Linker (V2.07.00 )             14-Mar-2019 16:08:47
+Renesas Optimizing Linker (V2.07.00 )             14-Mar-2019 16:02:37
 
 *** Options ***
 
@@ -15,8 +15,8 @@ Renesas Optimizing Linker (V2.07.00 )             14-Mar-2019 16:08:47
 -input=".\device/sal\sal_sockets.obj"
 -input=".\device/sal/wifi/mk3060\mk3060.obj"
 -input=".\device/sal/wifi/mk3060\wifi_atcmd.obj"
--input=".\example/mqttapp\mqtt-example.obj"
--input=".\example/rx65_test\test_r5f.obj"
+-input=".\example/RTB_BOARD\mqtt-example.obj"
+-input=".\example/RTB_BOARD\test_r5f.obj"
 -input=".\framework/atparser\atparser.obj"
 -input=".\framework/cloud\cloud.obj"
 -input=".\framework/common\main.obj"
@@ -111,21 +111,21 @@ Renesas Optimizing Linker (V2.07.00 )             14-Mar-2019 16:08:47
 -input=".\kernel/yloop\yloop.obj"
 -input=".\platform/arch/rx600/rx65n/e2s\port_c.obj"
 -input=".\platform/mcu/r5f565ne/aos\soc_impl.obj"
--input=".\platform/mcu/r5f565ne/bsp\bsp.obj"
--input=".\platform/mcu/r5f565ne/bsp\bsp_int_vect_tbl.obj"
--input=".\platform/mcu/r5f565ne/bsp\bsp_led.obj"
--input=".\platform/mcu/r5f565ne/bsp\bsp_sys.obj"
--input=".\platform/mcu/r5f565ne/bsp\bsp_vect_tbl.obj"
--input=".\platform/mcu/r5f565ne/bsp\dbsct.obj"
--input=".\platform/mcu/r5f565ne/bsp\os_bsp.obj"
+-input=".\platform/mcu/r5f565ne/bsp_RTB\bsp.obj"
+-input=".\platform/mcu/r5f565ne/bsp_RTB\bsp_int_vect_tbl.obj"
+-input=".\platform/mcu/r5f565ne/bsp_RTB\bsp_led.obj"
+-input=".\platform/mcu/r5f565ne/bsp_RTB\bsp_sys.obj"
+-input=".\platform/mcu/r5f565ne/bsp_RTB\bsp_vect_tbl.obj"
+-input=".\platform/mcu/r5f565ne/bsp_RTB\dbsct.obj"
+-input=".\platform/mcu/r5f565ne/bsp_RTB\os_bsp.obj"
 -input=".\platform/mcu/r5f565ne/flash\flash_port.obj"
 -input=".\platform/mcu/r5f565ne/fota\ota_port.obj"
 -input=".\platform/mcu/r5f565ne/fota\ota_version.obj"
--input=".\platform/mcu/r5f565ne/hal/r_bsp_v3.60/r_bsp/board/rskrx65n_2mb\hwsetup.obj"
--input=".\platform/mcu/r5f565ne/hal/r_bsp_v3.60/r_bsp/board/rskrx65n_2mb\lowlvl.obj"
--input=".\platform/mcu/r5f565ne/hal/r_bsp_v3.60/r_bsp/board/rskrx65n_2mb\lowsrc.obj"
--input=".\platform/mcu/r5f565ne/hal/r_bsp_v3.60/r_bsp/board/rskrx65n_2mb\resetprg.obj"
--input=".\platform/mcu/r5f565ne/hal/r_bsp_v3.60/r_bsp/board/rskrx65n_2mb\sbrk.obj"
+-input=".\platform/mcu/r5f565ne/hal/r_bsp_v3.60/r_bsp/board/generic_rx65n\hwsetup.obj"
+-input=".\platform/mcu/r5f565ne/hal/r_bsp_v3.60/r_bsp/board/generic_rx65n\lowlvl.obj"
+-input=".\platform/mcu/r5f565ne/hal/r_bsp_v3.60/r_bsp/board/generic_rx65n\lowsrc.obj"
+-input=".\platform/mcu/r5f565ne/hal/r_bsp_v3.60/r_bsp/board/generic_rx65n\resetprg.obj"
+-input=".\platform/mcu/r5f565ne/hal/r_bsp_v3.60/r_bsp/board/generic_rx65n\sbrk.obj"
 -input=".\platform/mcu/r5f565ne/hal/r_bsp_v3.60/r_bsp/mcu/all\r_bsp_common.obj"
 -input=".\platform/mcu/r5f565ne/hal/r_bsp_v3.60/r_bsp/mcu/rx65n\cpu.obj"
 -input=".\platform/mcu/r5f565ne/hal/r_bsp_v3.60/r_bsp/mcu/rx65n\mcu_clocks.obj"
@@ -162,12 +162,12 @@ Renesas Optimizing Linker (V2.07.00 )             14-Mar-2019 16:08:47
 -input=".\utility/libc/compilers/rx\rx_libc.obj"
 -input=".\utility/libc\newlib_stub.obj"
 -input=".\utility/log\log.obj"
--library=".\Rx65N_MQTT_Sample.lib"
+-library=".\RTB_ALIOS131.lib"
 -start=SU,SI,B_1,R_1,B_2,R_2,B,R,RPFRAM,RPFRAM2/04,PResetPRG,C_1,C_2,C,C$*,D*,W*,L,PIntPRG,P,PFRAM,PFRAM2/0FFF00000,EXCEPTVECT/0FFFFFF80,RESETVECT/0FFFFFFFC
--output=Rx65N_MQTT_Sample.abs
+-output=RTB_ALIOS131.abs
 -form=absolute
 -nomessage
--list=Rx65N_MQTT_Sample.map
+-list=RTB_ALIOS131.map
 -nooptimize
 -rom=D=R,D_1=R_1,D_2=R_2,PFRAM=RPFRAM,PFRAM2=RPFRAM2
 -nologo
@@ -186,19 +186,19 @@ SI
 B_1
                                   00001404  00035646     34243   1
 R_1
-                                  00035647  00035797       151   1
+                                  00035647  00035798       152   1
 B_2
-                                  00035798  000357a1         a   2
+                                  0003579a  000357a3         a   2
 R_2
-                                  000357a2  000357a5         4   2
+                                  000357a4  000357a7         4   2
 B
-                                  000357a8  0003b0c3      591c   4
+                                  000357a8  0003b3fb      5c54   4
 R
-                                  0003b0c4  0003c017       f54   4
+                                  0003b3fc  0003c42f      1034   4
 RPFRAM
-                                  0003c018  0003d2d5      12be   1
+                                  0003c430  0003d6ed      12be   1
 RPFRAM2
-                                  0003d2d6  0003d3de       109   1
+                                  0003d6ee  0003d7f6       109   1
 $ADDR_C_FE7F5D00
                                   fe7f5d00  fe7f5d0b         c   1
 $ADDR_C_FE7F5D10
@@ -214,43 +214,43 @@ $ADDR_C_FE7F5D64
 $ADDR_C_FE7F5D70
                                   fe7f5d70  fe7f5d73         4   1
 C_1
-                                  fff00000  fff015f5      15f6   1
+                                  fff00000  fff01684      1685   1
 C_2
-                                  fff015f6  fff01a55       460   2
+                                  fff01686  fff01ae5       460   2
 C
-                                  fff01a58  fff0314f      16f8   4
+                                  fff01ae8  fff0320f      1728   4
 C$DSEC
-                                  fff03150  fff03173        24   4
+                                  fff03210  fff03233        24   4
 C$BSEC
-                                  fff03174  fff0318b        18   4
+                                  fff03234  fff0324b        18   4
 C$INIT
-                                  fff0318c  fff0318c         0   1
+                                  fff0324c  fff0324c         0   1
 C$VECT
-                                  fff0318c  fff0358b       400   4
+                                  fff0324c  fff0364b       400   4
 C$VTBL
-                                  fff0358c  fff0358c         0   1
+                                  fff0364c  fff0364c         0   1
 D
-                                  fff0358c  fff044df       f54   4
+                                  fff0364c  fff0467f      1034   4
 D_2
-                                  fff044e0  fff044e3         4   2
+                                  fff04680  fff04683         4   2
 D_1
-                                  fff044e4  fff04634       151   1
+                                  fff04684  fff047d5       152   1
 W
-                                  fff04638  fff04638         0   4
+                                  fff047d8  fff047d8         0   4
 W_1
-                                  fff04638  fff04643         c   1
+                                  fff047d8  fff047e3         c   1
 W_2
-                                  fff04644  fff0467d        3a   2
+                                  fff047e4  fff0481d        3a   2
 L
-                                  fff04680  fff10e5f      c7e0   4
+                                  fff04820  fff11154      c935   4
 PIntPRG
-                                  fff10e60  fff10e6b         c   1
+                                  fff11155  fff11160         c   1
 P
-                                  fff10e6c  fff6b1c5     5a35a   1
+                                  fff11161  fff6dc61     5cb01   1
 PFRAM
-                                  fff6b1c6  fff6c483      12be   1
+                                  fff6dc62  fff6ef1f      12be   1
 PFRAM2
-                                  fff6c484  fff6c58c       109   1
+                                  fff6ef20  fff6f028       109   1
 EXCEPTVECT
                                   ffffff80  fffffffb        7c   4
 RESETVECT

@@ -8,3 +8,7 @@
 *.bin
 *.mot
 *.x
+*.mk
+*.abs
+*.lbk
+*.lib

@@ -67,6 +67,11 @@
 #define DEVICE_NAME             "test_R5F565NEDDFB_dev_03"
 #define DEVICE_SECRET           "ZpKrDk4cARQRzpEb8IXUrzPn0y7nvCiY"
 #define PRODUCT_SECRET          "DdVozeDKoOERdqyR"
+#elif rx65n_rtb_demo
+#define PRODUCT_KEY             "a1I0E0DTnIT"
+#define DEVICE_NAME             "RTB_cloud_demo"
+#define DEVICE_SECRET           "wORI6Vpu4RzvjZQk8EdLK52VNSA0Qk26"
+#define PRODUCT_SECRET          "KY8Xv2dA2JMKJrOg"
 #else
 //#define PRODUCT_KEY             "a1AzoSi5TMc"
 #define PRODUCT_SECRET          "Z9Ze6qgMrWgTOezW"//"4LYg6O3D0vZAuui1"//"Z9Ze6qgMrWgTOezW"
