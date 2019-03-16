@@ -8,13 +8,13 @@
 #include "iodefine.h"
 #include <aos/aos.h>
 #include "aos\kernel.h"
-#include "rx_platform.h"           // Located in the FIT BSP module
+#include "rx_platform.h"		// Located in the FIT BSP module
 #include "r_sci_rx_if.h"        // The SCI module API interface file.
 #include "r_byteq_if.h"         // The BYTEQ module API interface file.
 #include "r_sci_rx_config.h"    // User configurable options for the SCI module
 #include <hal/wifi.h>
 
-#include "r_flash_rx_if.h"
+#include "r_flash_rx_if.h"W
 #include "r_flash_rx_config.h"
 #include "flash.h"
 
@@ -31,7 +31,7 @@
 #include <netmgr.h>
 //#include <accs.h>
 
-#include "iot_export.h"		//PABLO_TEST
+#include "iot_export.h"
 
 #ifdef AOS_ATCMD
 #include <atparser.h>
@@ -123,16 +123,6 @@ void demo_task2(void *arg)
     }
 }
 
-//static void at_uart_configure(uart_dev_t *u)
-//{
-//    u->port                = AT_UART_PORT;
-//    u->config.baud_rate    = AT_UART_BAUDRATE;
-//    u->config.data_width   = AT_UART_DATA_WIDTH;
-//    u->config.parity       = AT_UART_PARITY;
-//    u->config.stop_bits    = AT_UART_STOP_BITS;
-//    u->config.flow_control = AT_UART_FLOW_CONTROL;
-//}
-
 
 uart_dev_t console;
 uart_dev_t uart_0;
@@ -160,8 +150,8 @@ void init_atparser()
 
 void init_task(void *arg)
 {
-#define PABLO
-#ifdef PABLO
+#define ENVISION_USB_UART
+#ifdef ENVISION_USB_UART
     console.port = 5;
     console.config.baud_rate = 115200;
     console.config.data_width = DATA_WIDTH_8BIT;
@@ -178,7 +168,7 @@ void init_task(void *arg)
     PORTC.PDR.BIT.B2 = 0;		//PC2 as RxD5
     PORTC.PMR.BIT.B3 = 1;
     PORTC.PMR.BIT.B2 = 1;
-#else
+#else	//If not use Envision USB port for UART, use SCI2
     console.port = 2;
     console.config.baud_rate = 115200;//921600;//115200;//921600;
     console.config.data_width = DATA_WIDTH_8BIT;
@@ -231,19 +221,8 @@ int main(void)
     if (err != FLASH_SUCCESS)
         while(1);
 
-//	accessInfo.start_addr = 0xFFF00000;
-//	accessInfo.end_addr = 0xFFF80000;
-//	err = R_FLASH_Control(FLASH_CMD_ACCESSWINDOW_SET, (void *)&accessInfo);
-//	err = R_FLASH_Erase(0xFFF00000,16);
 	BSP_Init();
     aos_task_new_ext(&g_init_task, "init", init_task, 0, APP_TASK_STACKSIZE, DEMO_TASK_PRIORITY1);
-
-//    krhino_task_create(&demo_task_obj1, "demo_task", 0,DEMO_TASK_PRIORITY1,
-//        50, demo_task_buf1, DEMO_TASK_STACKSIZE, demo_task1, 1);
-
-//   krhino_task_create(&demo_task_obj2, "demo_task2", 0,DEMO_TASK_PRIORITY2,
- //       50, demo_task_buf2, DEMO_TASK_STACKSIZE, demo_task2, 1);
-
     IOT_OpenLog(&log_example);
     IOT_SetLogLevel(5);
     krhino_start();
