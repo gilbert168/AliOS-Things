@@ -31,7 +31,7 @@
 #include <netmgr.h>
 //#include <accs.h>
 
-#include "iot_export.h"		//PABLO_TEST
+#include "iot_export.h"
 
 #ifdef AOS_ATCMD
 #include <atparser.h>
@@ -138,16 +138,6 @@ void demo_task2(void *arg)
     }
 }
 
-//static void at_uart_configure(uart_dev_t *u)
-//{
-//    u->port                = AT_UART_PORT;
-//    u->config.baud_rate    = AT_UART_BAUDRATE;
-//    u->config.data_width   = AT_UART_DATA_WIDTH;
-//    u->config.parity       = AT_UART_PARITY;
-//    u->config.stop_bits    = AT_UART_STOP_BITS;
-//    u->config.flow_control = AT_UART_FLOW_CONTROL;
-//}
-
 
 uart_dev_t console;
 uart_dev_t uart_0;
@@ -241,10 +231,6 @@ int main(void)
     if (err != FLASH_SUCCESS)
         while(1);
 
-//	accessInfo.start_addr = 0xFFF00000;
-//	accessInfo.end_addr = 0xFFF80000;
-//	err = R_FLASH_Control(FLASH_CMD_ACCESSWINDOW_SET, (void *)&accessInfo);
-//	err = R_FLASH_Erase(0xFFF00000,16);
 	BSP_Init();
 
 
